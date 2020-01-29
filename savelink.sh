@@ -14,6 +14,8 @@ mkdir -p $name
 cd $name
 wget $url -O output.html
 
+echo -e "URL:\t"$url"\nTime:\t"$(date +%Y-%m-%d %H:%M:%S)"\nFilesize:\t"$(stat --printf="%s" output.html) > info.txt
+
 echo "Your URL is saved: $url"
 
 echo "Location: $path/$name/output.html"
