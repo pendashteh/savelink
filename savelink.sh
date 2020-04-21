@@ -1,9 +1,13 @@
-
-read -p "Url? " url
-read -p "Title? " name
+url=$1
+[ -z "$url" ] && read -p "Url? " url || echo "Url: "$url
+title=$(echo $url | sed -e 's#https\?://##g;s/www.//g;s/[^A-Za-z0-9._-]/_/g')
+read -p "Title? [$title]" name
+[ -z "$name" ] && name=$title
 name=$(date +%Y%d%m)"-"$name
 
-read -e -p "Location? " path
+path_default='.'
+read -e -p "Location? [$path_default]" path
+[ -z "$path" ] && path=$path_default
 
 if [ ! -d $path ]; then
   echo "Path not found."
